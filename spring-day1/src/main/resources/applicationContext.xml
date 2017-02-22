@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<!-- 
+		配置bean:
+			class bean 的全类名，采用反射的方式在IOC容器中创建bean,所以要求bean中必须有无参构造器
+			id：标识容器中的bean. id 唯一
+	 -->	
+	<bean id="helloWorld" class="com.day1.hello.HelloWorld">
+		<!-- 通过set方法注入参数 -->
+		<!-- <property name="name" value="test man"></property> -->
+		<!-- 通过构造方法注入参数,按照索引顺序或者根据参数的类型type以区分构造器重载造成的错误 -->
+		<constructor-arg value="hello"></constructor-arg>
+	</bean>
+	
+</beans>
