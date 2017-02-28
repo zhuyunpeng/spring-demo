@@ -14,10 +14,10 @@ public class MainTest {
 		System.out.println(context);
 		//2.从IOC 容器中获取Bean实例
 		HelloWorld hw=(HelloWorld) context.getBean("helloWorld");
+		hw=(HelloWorld) context.getBean("helloWorld");
 		
-		
-		BasicDataSource ds=(BasicDataSource) context.getBean("dataSource");
-		System.out.println(ds);
+//		BasicDataSource ds=(BasicDataSource) context.getBean("dataSource");
+//		System.out.println(ds);
 		
 //		hw.sayHello();
 	}
