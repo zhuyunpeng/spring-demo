@@ -14,8 +14,10 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<junit_version>4.12</junit_version>
-		<spring_version>4.2.5.RELEASE</spring_version>
+		<spring_version>4.0.3.RELEASE</spring_version>
 		<slf4j_version>1.6.4</slf4j_version>
+		<dbcp_version>1.4</dbcp_version>
+		<mysql_version>5.1.29</mysql_version>
 	</properties>
 
 	<dependencyManagement>
@@ -58,6 +60,20 @@
 				<artifactId>spring-expression</artifactId>
 				<version>${spring_version}</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
+			<dependency>
+				<groupId>commons-dbcp</groupId>
+				<artifactId>commons-dbcp</artifactId>
+				<version>${dbcp_version}</version>
+			</dependency>
+			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql_version}</version>
+			</dependency>
+
+
 
 
 

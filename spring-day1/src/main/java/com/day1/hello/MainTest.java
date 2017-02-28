@@ -1,5 +1,6 @@
 package com.day1.hello;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,7 +15,11 @@ public class MainTest {
 		//2.从IOC 容器中获取Bean实例
 		HelloWorld hw=(HelloWorld) context.getBean("helloWorld");
 		
-		hw.sayHello();
+		
+		BasicDataSource ds=(BasicDataSource) context.getBean("dataSource");
+		System.out.println(ds);
+		
+//		hw.sayHello();
 	}
 
 }
