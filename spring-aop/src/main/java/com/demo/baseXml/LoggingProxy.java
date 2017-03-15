@@ -1,8 +1,6 @@
-package com.demo.test;
+package com.demo.baseXml;
 
-import com.demo.exception.CustomException;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
@@ -11,22 +9,16 @@ import java.util.Arrays;
 /**
  * Created by Administrator on 2017-03-15.
  *
- *
+ * 基于配置的方式
  *
  */
 
-@Aspect
-@Component
 public class LoggingProxy {
 
 
-    //切入点表达式
-    @Pointcut("execution(public int com.demo.test.ArithInterface.*(int,int))")
-    private void pointCutExpression(){}
 
 
     //前置通知
-    @Before(value = "pointCutExpression()")
     public void beforeAdd(JoinPoint joinPoint){
 
 
@@ -39,7 +31,6 @@ public class LoggingProxy {
     }
 
     //返回通知,可以有结果需要returning标签进行显示，程序异常不会返回结果
-    @AfterReturning(value="execution(public int com.demo.test.ArithInterface.*(int,int))",returning ="result" )
     public void returnAdd(JoinPoint joinPoint,Object result){
         String methodName=joinPoint.getSignature().getName();
 
@@ -48,7 +39,6 @@ public class LoggingProxy {
     }
 
     //后置通知，不管程序是否异常都会执行，类似try..catch块中的finally最终都会执行,没有返回结果
-    @After("execution(public int com.demo.test.ArithInterface.*(int,int))")
     public void afterLog(JoinPoint joinPoint){
         String methodName=joinPoint.getSignature().getName();
         System.out.println("the method "+methodName+"() after ends");
@@ -57,7 +47,6 @@ public class LoggingProxy {
      * 在目标方法出现异常时会执行的代码.
      * 可以访问到异常对象; 且可以指定在出现特定异常时在执行通知代码
      */
-    @AfterThrowing(value="execution(public int com.demo.test.ArithInterface.*(int,int))",throwing = "e")
     public void throwException(JoinPoint joinPoint,Exception e){
 
         String methodName=joinPoint.getSignature().getName();

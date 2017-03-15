@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+      ">
+
+    <bean id="arithInterface" class="com.demo.baseXml.ArithImpl"></bean>
+
+
+    <!--声明一个切面-->
+    <bean id="logProxy" class="com.demo.baseXml.LoggingProxy"/>
+    <bean id="checkProxy" class="com.demo.baseXml.CheckProxy"/>
+    <aop:config>
+        <aop:aspect id="logPorxy" ref="logProxy" order="1"><!--order越小，优先级越高-->
+            <aop:pointcut id="logService" expression="execution(* com.demo.baseXml.ArithInterface.*(int,int))"/>
+            <aop:before method="beforeAdd" pointcut-ref="logService"/>
+            <aop:after-returning method="returnAdd" pointcut-ref="logService" returning="result"/>
+            <aop:after method="afterLog" pointcut-ref="logService"/>
+            <aop:after-throwing method="throwException" pointcut-ref="logService" throwing="e"/>
+        </aop:aspect>
+        <aop:aspect id="cheproxy" ref="checkProxy" order="2">
+            <aop:pointcut id="logService" expression="execution(* com.demo.baseXml.ArithInterface.*(int,int))"/>
+            <aop:before method="doSomeCheck" pointcut-ref="logService"/>
+        </aop:aspect>
+
+
+    </aop:config>
+
+</beans>
